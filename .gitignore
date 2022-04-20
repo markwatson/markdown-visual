@@ -125,5 +125,5 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-ext.json
+#ext.json
 build

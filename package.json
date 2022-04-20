@@ -22,7 +22,7 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "homepage": ".",
+  "homepage": "https://markwatson.github.io/markdown-visual/",
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "PORT=8001 react-scripts start",
@@ -31,7 +31,12 @@
     "eject": "react-scripts eject",
     "pretty": "prettier --write 'src/**/*.{html,css,scss,js,jsx,ts,tsx,json}' README.md",
     "prepare": "husky install",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "predeploy": "yarn run pretty && yarn run build && yarn clean-deploy-cache",
+    "deploy-build": "yarn run predeploy && gh-pages -b build -d build",
+    "deploy-dev": "yarn run predeploy && gh-pages -b dev -d build",
+    "deploy-stable": "yarn run predeploy && gh-pages -b gh-pages -d build",
+    "clean-deploy-cache": "rm -rf node_modules/.cache/gh-pages"
   },
   "devDependencies": {
     "@codemirror/lang-markdown": "^0.19.6",
